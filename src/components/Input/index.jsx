@@ -1,7 +1,7 @@
 import React from 'react';
 import { Input as NativeBaseInput } from 'native-base';
 
-export function Input({ ...rest }) {
+function Input({ ...rest }) {
   return (
     <NativeBaseInput
       bg="gray.700"
@@ -21,3 +21,5 @@ export function Input({ ...rest }) {
     />
   );
 }
+
+export default Input;
