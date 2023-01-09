@@ -7,13 +7,23 @@ import {
   useTheme,
   Text,
   Heading,
+  FlatList,
 } from 'native-base';
 
 import Filter from '../../components/Filter';
+import Order from '../../components/Order';
 
 function Home() {
   const { colors } = useTheme();
   const [statusSelected, setStatusSelected] = useState('open');
+  const [orders, setOrders] = useState([
+    {
+      id: '123',
+      patrimony: '45654745',
+      when: '09/01/23 às 10:00',
+      status: 'open',
+    },
+  ]);
 
   return (
     <VStack flex={1} pb={6} bg="gray.700">
@@ -53,6 +63,11 @@ function Home() {
             isActive={statusSelected === 'closed'}
           />
         </HStack>
+        <FlatList
+          data={orders}
+          keyExtractor={(item) => item.id}
+          renderItem={({ item }) => <Order data={item} />}
+        />
       </VStack>
     </VStack>
   );
