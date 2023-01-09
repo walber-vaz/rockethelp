@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { SignOut } from 'phosphor-react-native';
+import { SignOut, ChatTeardropText } from 'phosphor-react-native';
 import {
   HStack,
   IconButton,
@@ -8,10 +8,12 @@ import {
   Text,
   Heading,
   FlatList,
+  Center,
 } from 'native-base';
 
 import Filter from '../../components/Filter';
 import Order from '../../components/Order';
+import Button from '../../components/Button';
 
 function Home() {
   const { colors } = useTheme();
@@ -22,6 +24,12 @@ function Home() {
       patrimony: '45654745',
       when: '09/01/23 às 10:00',
       status: 'open',
+    },
+    {
+      id: '1235',
+      patrimony: '567657',
+      when: '09/01/23 às 11:00',
+      status: 'closed',
     },
   ]);
 
@@ -67,7 +75,20 @@ function Home() {
           data={orders}
           keyExtractor={(item) => item.id}
           renderItem={({ item }) => <Order data={item} />}
+          showsVerticalScrollIndicator={false}
+          contentContainerStyle={{ paddingBottom: 100 }}
+          ListEmptyComponent={() => (
+            <Center>
+              <ChatTeardropText color={colors.gray[300]} size={40} />
+              <Text color="gray.300" fontSize="xl" mt={6} textAlign="center">
+                Você ainda não possui {'\n'}
+                solicitações{' '}
+                {statusSelected === 'open' ? 'em andamento' : 'finalizadas'}
+              </Text>
+            </Center>
+          )}
         />
+        <Button title="Nova solicitação" />
       </VStack>
     </VStack>
   );

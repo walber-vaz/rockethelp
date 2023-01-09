@@ -1,7 +1,7 @@
 import React from 'react';
 import { Button as NativeBaseButton, Heading } from 'native-base';
 
-export function Button({ title, ...rest }) {
+function Button({ title, ...rest }) {
   return (
     <NativeBaseButton
       bg="green.700"
@@ -17,3 +17,5 @@ export function Button({ title, ...rest }) {
     </NativeBaseButton>
   );
 }
+
+export default Button;
