@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { VStack, Heading, Icon, useTheme } from 'native-base';
 import { Envelope, Key } from 'phosphor-react-native';
 
@@ -9,6 +10,8 @@ import Logo from '../assets/logo.svg;'
 */
 
 function SignIn() {
+  const [name, setName] = useState('');
+  const [password, setPassword] = useState('');
   const { colors } = useTheme();
 
   return (
@@ -23,11 +26,13 @@ function SignIn() {
         InputLeftElement={
           <Icon as={<Envelope color={colors.gray[300]} />} ml={4} />
         }
+        onChangeText={setName}
       />
       <Input
         placeholder="Senha"
         InputLeftElement={<Icon as={<Key color={colors.gray[300]} />} ml={4} />}
         secureTextEntry
+        onChangeText={setPassword}
       />
       <Button title="Entrar" w="full" mt={8} />
     </VStack>
