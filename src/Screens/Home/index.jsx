@@ -10,6 +10,7 @@ import {
   FlatList,
   Center,
 } from 'native-base';
+import { useNavigation } from '@react-navigation/native';
 
 import Filter from '../../components/Filter';
 import Order from '../../components/Order';
@@ -32,6 +33,15 @@ function Home() {
       status: 'closed',
     },
   ]);
+  const navigation = useNavigation();
+
+  function handleNewOrder() {
+    navigation.navigate('new');
+  }
+
+  function handleOpenDetails(orderId) {
+    navigation.navigate('details', { orderId });
+  }
 
   return (
     <VStack flex={1} pb={6} bg="gray.700">
@@ -74,7 +84,9 @@ function Home() {
         <FlatList
           data={orders}
           keyExtractor={(item) => item.id}
-          renderItem={({ item }) => <Order data={item} />}
+          renderItem={({ item }) => (
+            <Order data={item} onPress={() => handleOpenDetails(item.id)} />
+          )}
           showsVerticalScrollIndicator={false}
           contentContainerStyle={{ paddingBottom: 100 }}
           ListEmptyComponent={() => (
@@ -88,7 +100,7 @@ function Home() {
             </Center>
           )}
         />
-        <Button title="Nova solicitação" />
+        <Button title="Nova solicitação" onPress={handleNewOrder} />
       </VStack>
     </VStack>
   );
