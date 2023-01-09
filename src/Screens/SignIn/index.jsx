@@ -1,7 +1,8 @@
 import { VStack, Heading, Icon, useTheme } from 'native-base';
-import { Input } from '../../components/Input';
 import { Envelope, Key } from 'phosphor-react-native';
 
+import { Input } from '../../components/Input';
+import { Button } from '../../components/Button';
 /*
 para usar logo no projeto
 import Logo from '../assets/logo.svg;'
@@ -28,6 +29,7 @@ function SignIn() {
         InputLeftElement={<Icon as={<Key color={colors.gray[300]} />} ml={4} />}
         secureTextEntry
       />
+      <Button title="Entrar" w="full" mt={8} />
     </VStack>
   );
 }
